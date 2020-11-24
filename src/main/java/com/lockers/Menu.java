@@ -46,6 +46,7 @@ public class Menu {
 
         switch (option) {
 
+//            Close Program
             case -1:
                 closeProgram("You tried maximum attempts, application is closed. Thank you!", true);
                 break;
@@ -66,10 +67,12 @@ public class Menu {
 
                 switch (sub_option) {
 
+//                    Close Program
                     case -1:
                         closeProgram("You tried maximum attempts, application is closed. Thank you!", true);
                         break;
 
+//                        View Files in Descending Order
                     case 1:
                         System.out.println("\nAll Files are showed in descending order.\n");
                         operation.allFilesDsc()
@@ -78,11 +81,13 @@ public class Menu {
                         options();
                         break;
 
+//                        Main Menu
                     case 2:
 //                        recursive call
                         options();
                         break;
 
+//                        Close Program
                     case 3:
                         closeProgram("Thank you for using our application! Application is closed", false);
                         break;
@@ -112,7 +117,11 @@ public class Menu {
 
 //            Search File
             case 4:
-                System.out.println("Search File");
+                if (operation.searchFile(scanner))
+                    System.out.println("File Exists");
+                else
+                    System.err.println("File doesn't exists");
+                options();
                 break;
 
 //            Close Application
@@ -141,7 +150,7 @@ public class Menu {
      *                    correct option.
      * @return int (It returns the user input value).
      */
-    public int correctOption(final String options, final int lastOption, final int maxAttempts) {
+    private int correctOption(final String options, final int lastOption, final int maxAttempts) {
 
 //        Take int value by user thorough command line
         int option = 0;
@@ -152,17 +161,10 @@ public class Menu {
 //        To iterate while loop
         boolean flag = true;
 
-//        Show options to user for first time and if user has chosen wrong one.
-        boolean repeat = true;
-
         while (flag) {
 
-//            Show options again to the user, if user has chosen wrong one.
-            if (repeat) {
-                repeat = false;
-                System.out.println(options);
-                option = scanner.nextInt();
-            }
+            System.out.println(options);
+            option = scanner.nextInt();
 
 //            If the input is in between the range specified, just break the loop and return the value
             if (option <= lastOption && option > 0)
@@ -175,7 +177,6 @@ public class Menu {
                 break;
             } else {
                 System.err.println("\nPlease select correct option");
-                repeat = true;
                 flag = true;
             }
             loop++;
@@ -189,7 +190,7 @@ public class Menu {
      * @param message This parameter will be showed to the user.
      * @param error   To show the message as an error or just as info.
      */
-    public void closeProgram(final String message, final boolean error) {
+    private void closeProgram(final String message, final boolean error) {
         if (error)
             System.err.println("\n" + message);
         else

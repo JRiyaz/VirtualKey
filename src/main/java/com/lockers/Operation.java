@@ -67,18 +67,9 @@ public class Operation {
      */
     public boolean createFile(Scanner scanner) {
 
-        System.out.println("Enter file name along with extension");
-
-        String fileName = scanner.next();
-
-        if (fileName.equals("") || fileName == null) {
-            return false;
-        }
-
-        file = new File(path, fileName);
-
         try {
-            return file.createNewFile();
+            if (!checkFile(scanner))
+                return file.createNewFile();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -94,6 +85,30 @@ public class Operation {
      */
     public boolean deleteFile(Scanner scanner) {
 
+        if (checkFile(scanner))
+            return file.delete();
+        return false;
+    }
+
+    /**
+     * This method checks if file exists or not.
+     *
+     * @param scanner This method required scanner object
+     * @return boolean (It returns true if file exists else return false).
+     */
+    public boolean searchFile(Scanner scanner) {
+
+        return checkFile(scanner);
+    }
+
+    /**
+     * This method checks if file exists or not.
+     *
+     * @param scanner This method required scanner object
+     * @return boolean (It returns true if file exists else return false).
+     */
+    private boolean checkFile(Scanner scanner) {
+
         System.out.println("Enter file name along with extension");
 
         String fileName = scanner.next();
@@ -104,9 +119,6 @@ public class Operation {
 
         file = new File(path, fileName);
 
-        if (file.exists())
-            return file.delete();
-
-        return false;
+        return file.exists();
     }
 }
