@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 public class Operation {
 
     private final String path = "src/main/resources/";
-    private File file = new File(path);
+    private File file;
 
     /**
      * This method gives the list of all files in ascending order.
@@ -28,6 +28,8 @@ public class Operation {
      * @return List<String> (This returns list of all files).
      */
     public List<String> allFilesAsc() {
+
+        file = new File(path);
 
         return Arrays.stream(file.list())
                 .sorted()
@@ -80,6 +82,30 @@ public class Operation {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        return false;
+    }
+
+    /**
+     * This method deletes file.
+     *
+     * @param scanner This method required scanner object
+     * @return boolean (It returns true if file gets deleted else return false).
+     */
+    public boolean deleteFile(Scanner scanner) {
+
+        System.out.println("Enter file name along with extension");
+
+        String fileName = scanner.next();
+
+        if (fileName.equals("") || fileName == null) {
+            return false;
+        }
+
+        file = new File(path, fileName);
+
+        if (file.exists())
+            return file.delete();
 
         return false;
     }

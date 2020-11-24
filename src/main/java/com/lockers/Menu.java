@@ -103,7 +103,11 @@ public class Menu {
 
 //            Delete File
             case 3:
-                System.out.println("Delete File");
+                if (operation.deleteFile(scanner))
+                    System.out.println("File deleted successfully");
+                else
+                    System.err.println("File doesn't exists.");
+                options();
                 break;
 
 //            Search File
