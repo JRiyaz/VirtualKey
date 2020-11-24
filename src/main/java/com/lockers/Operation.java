@@ -113,9 +113,8 @@ public class Operation {
 
         String fileName = scanner.next();
 
-        if (fileName.equals("") || fileName == null) {
+        if (fileName.equals(""))
             return false;
-        }
 
         file = new File(path, fileName);
 

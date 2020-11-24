@@ -42,7 +42,7 @@ public class Menu {
                 "5. Close Application";
 
 //        Take int value by the user thorough command line
-        final int option = correctOption(options, 5, 2);
+        final int option = correctOption(options, 5);
 
         switch (option) {
 
@@ -63,7 +63,7 @@ public class Menu {
                         "2. Main Menu\n" +
                         "3. Close Application";
 
-                final int sub_option = correctOption(sub_options, 3, 2);
+                final int sub_option = correctOption(sub_options, 3);
 
                 switch (sub_option) {
 
@@ -140,28 +140,22 @@ public class Menu {
      * correct option and return the user input if the input
      * meet the requirements.
      *
-     * @param options     This parameter will be showed to the user
-     *                    to choose a option.
-     * @param lastOption  The user input will be compared with the
-     *                    parameter, if the input is in between the
-     *                    range or not.
-     * @param maxAttempts This parameter is used to limit the
-     *                    chances given to the user to choose
-     *                    correct option.
+     * @param options    This parameter will be showed to the user
+     *                   to choose a option.
+     * @param lastOption The user input will be compared with the
+     *                   parameter, if the input is in between the
+     *                   range or not.
      * @return int (It returns the user input value).
      */
-    private int correctOption(final String options, final int lastOption, final int maxAttempts) {
+    private int correctOption(final String options, final int lastOption) {
 
 //        Take int value by user thorough command line
-        int option = 0;
+        int option;
 
 //        Count the iterations of while loop and show the options again to the user if user has chosen wrong option.
         int loop = 0;
 
-//        To iterate while loop
-        boolean flag = true;
-
-        while (flag) {
+        while (true) {
 
             System.out.println(options);
             option = scanner.nextInt();
@@ -171,14 +165,12 @@ public class Menu {
                 break;
 
 //            If the attempts exceed close the resources and return -1 value which will close the program
-            if (loop >= maxAttempts) {
-                scanner.close();
+            if (loop >= 2) {
                 option = -1;
                 break;
-            } else {
+            } else
                 System.err.println("\nPlease select correct option");
-                flag = true;
-            }
+
             loop++;
         }
         return option;
@@ -195,6 +187,8 @@ public class Menu {
             System.err.println("\n" + message);
         else
             System.out.println("\n" + message);
+
+        scanner.close();
         System.exit(0);
     }
 }
