@@ -1,9 +1,11 @@
 package com.lockers;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
 import java.util.stream.Collectors;
 
 /**
@@ -17,7 +19,8 @@ import java.util.stream.Collectors;
  */
 public class Operation {
 
-    private File file = new File("src/main/resources/");
+    private final String path = "src/main/resources/";
+    private File file = new File(path);
 
     /**
      * This method gives the list of all files in ascending order.
@@ -52,5 +55,32 @@ public class Operation {
             --i;
         }
         return dscList;
+    }
+
+    /**
+     * This method creates file.
+     *
+     * @param scanner This method required scanner object
+     * @return boolean (It returns true if file gets created else return false).
+     */
+    public boolean createFile(Scanner scanner) {
+
+        System.out.println("Enter file name along with extension");
+
+        String fileName = scanner.next();
+
+        if (fileName.equals("") || fileName == null) {
+            return false;
+        }
+
+        file = new File(path, fileName);
+
+        try {
+            return file.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return false;
     }
 }

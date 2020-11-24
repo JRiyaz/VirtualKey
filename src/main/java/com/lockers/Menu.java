@@ -30,8 +30,6 @@ public class Menu {
     /**
      * This method perform several operations like create, delete, search
      * and show files based on the user input.
-     *
-     * @return nothing.
      */
     public void options() {
 
@@ -96,7 +94,11 @@ public class Menu {
 
 //            Create File
             case 2:
-                System.out.println("Create File");
+                if (operation.createFile(scanner))
+                    System.out.println("File created successfully");
+                else
+                    System.err.println("Something went wrong. Please try after some time.");
+                options();
                 break;
 
 //            Delete File
@@ -182,7 +184,6 @@ public class Menu {
      *
      * @param message This parameter will be showed to the user.
      * @param error   To show the message as an error or just as info.
-     * @return nothing.
      */
     public void closeProgram(final String message, final boolean error) {
         if (error)
