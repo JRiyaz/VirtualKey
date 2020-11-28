@@ -21,7 +21,7 @@ public class Menu {
 
     public static void main(String[] args) {
 
-        System.out.println("\n\t\t\t\tWelcome to Lockers. Developed by 'Riyaz J'");
+        System.out.println("\n\t\t\t\tWelcome to LockedMe.com. Developed by 'Riyaz J'");
         System.out.println("\t\t\t\t------------------------------------------");
 
         new Menu().options();
