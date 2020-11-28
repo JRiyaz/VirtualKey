@@ -15,9 +15,9 @@ import java.util.Scanner;
 public class Menu {
 
     //        Scanner object
-    final Scanner scanner = new Scanner(System.in);
+    private final Scanner scanner = new Scanner(System.in);
 
-    final Operation operation = new Operation();
+    private final Operation operation = new Operation();
 
     public static void main(String[] args) {
 
@@ -99,28 +99,44 @@ public class Menu {
 
 //            Create File
             case 2:
-                if (operation.createFile(scanner))
-                    System.out.println("File created successfully");
-                else
-                    System.err.println("Something went wrong. Please try after some time.");
+
+                String file_name = checkName();
+                if (file_name != null) {
+                    if (operation.createFile(file_name))
+                        System.out.println("File created successfully");
+                    else
+                        System.err.println("Something went wrong. Please try after some time.");
+                } else
+                    System.err.println("Invalid file name");
                 options();
                 break;
 
 //            Delete File
             case 3:
-                if (operation.deleteFile(scanner))
-                    System.out.println("File deleted successfully");
-                else
-                    System.err.println("File doesn't exists.");
+
+                file_name = checkName();
+                if (file_name != null) {
+                    if (operation.deleteFile(file_name))
+                        System.out.println("File deleted successfully");
+                    else
+                        System.err.println("File doesn't exists.");
+                } else
+                    System.err.println("Invalid file name");
                 options();
                 break;
 
 //            Search File
             case 4:
-                if (operation.searchFile(scanner))
-                    System.out.println("File Exists");
-                else
-                    System.err.println("File doesn't exists");
+
+                file_name = checkName();
+                if (file_name != null) {
+                    file_name = operation.searchFile(file_name);
+                    if (file_name != null)
+                        System.out.println("File " + file_name + " exists");
+                    else
+                        System.err.println("File doesn't exists");
+                } else
+                    System.err.println("Invalid file name");
                 options();
                 break;
 
@@ -177,13 +193,31 @@ public class Menu {
     }
 
     /**
+     * This method verifies the user input for file name.
+     *
+     * @return String (It returns the user input value).
+     */
+    private String checkName() {
+
+        System.out.println("Enter file name along with extension");
+
+        String fileName = scanner.next();
+
+        if (fileName.equals("") || !(fileName.contains(".")))
+            return null;
+
+        return fileName;
+    }
+
+    /**
      * This method close the program and show appropriate message.
      *
-     * @param message This parameter will be showed to the user.
-     * @param error   To show the message as an error or just as info.
+     * @param message       This parameter will be showed to the user.
+     * @param errorOccurred To show the message as an error or just as info.
      */
-    private void closeProgram(final String message, final boolean error) {
-        if (error)
+    private void closeProgram(final String message, final boolean errorOccurred) {
+
+        if (errorOccurred)
             System.err.println("\n" + message);
         else
             System.out.println("\n" + message);

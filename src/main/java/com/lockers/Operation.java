@@ -2,10 +2,9 @@ package com.lockers;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
-import java.util.Scanner;
 import java.util.stream.Collectors;
 
 /**
@@ -19,7 +18,7 @@ import java.util.stream.Collectors;
  */
 public class Operation {
 
-    private final String path = "src/main/resources/";
+    private static final String path = "src/main/resources/";
     private File file;
 
     /**
@@ -44,80 +43,67 @@ public class Operation {
      */
     public List<String> allFilesDsc() {
 
-        List<String> dscList = new ArrayList<>();
+        final List<String> dscList = allFilesAsc();
 
-        final List<String> ascList = allFilesAsc();
+        Collections.reverse(dscList);
 
-        int i = ascList.size() - 1;
-
-        while (i >= 0) {
-
-            dscList.add(ascList.get(i));
-
-            --i;
-        }
         return dscList;
+
+//        List<String> dscList = new ArrayList<>();
+//
+//        final List<String> ascList = allFilesAsc();
+//
+//        int i = ascList.size() - 1;
+//
+//        while (i >= 0) {
+//
+//            dscList.add(ascList.get(i));
+//
+//            --i;
+//        }
+//        return dscList;
     }
 
     /**
      * This method creates file.
      *
-     * @param scanner This method required scanner object
+     * @param file_name This method required file name to perform the operation
      * @return boolean (It returns true if file gets created else return false).
      */
-    public boolean createFile(Scanner scanner) {
+    public boolean createFile(final String file_name) {
 
+        file = new File(path, file_name.toLowerCase());
         try {
-            if (!checkFile(scanner))
-                return file.createNewFile();
+            return file.createNewFile();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         return false;
     }
 
     /**
      * This method deletes file.
      *
-     * @param scanner This method required scanner object
+     * @param file_name This method required file name to perform the operation
      * @return boolean (It returns true if file gets deleted else return false).
      */
-    public boolean deleteFile(Scanner scanner) {
+    public boolean deleteFile(final String file_name) {
 
-        if (checkFile(scanner))
-            return file.delete();
-        return false;
+        file = new File(path, file_name.toLowerCase());
+        return file.delete();
     }
 
     /**
      * This method checks if file exists or not.
      *
-     * @param scanner This method required scanner object
+     * @param file_name This method required file name to perform the operation
      * @return boolean (It returns true if file exists else return false).
      */
-    public boolean searchFile(Scanner scanner) {
+    public String searchFile(final String file_name) {
 
-        return checkFile(scanner);
-    }
-
-    /**
-     * This method checks if file exists or not.
-     *
-     * @param scanner This method required scanner object
-     * @return boolean (It returns true if file exists else return false).
-     */
-    private boolean checkFile(Scanner scanner) {
-
-        System.out.println("Enter file name along with extension");
-
-        String fileName = scanner.next();
-
-        if (fileName.equals(""))
-            return false;
-
-        file = new File(path, fileName);
-
-        return file.exists();
+        file = new File(path, file_name.toLowerCase());
+        if (file.exists())
+            return file.getName();
+        return null;
     }
 }
