@@ -132,7 +132,7 @@ public class Menu {
                 if (file_name != null) {
                     file_name = operation.searchFile(file_name);
                     if (file_name != null)
-                        System.out.println("File " + file_name + " exists");
+                        System.out.println("File '" + file_name + "' exists");
                     else
                         System.err.println("File doesn't exists");
                 } else
