@@ -1,73 +1,32 @@
-# VirtualKey
-This is small project totally based on Java file handling. In this application there will be few options to choose for user to create, delete, search ..... files. This project is developed and managed though Agile approach. I'm using git as VCS and this application developed using Java.
-
-#Frameworks and Technologies used
-1. Maven
-2. Java 8
-3. Git and Github
-4. Junit 5
-5. AssertJ API
-6. Agile Scrum Methodology
-
-#Concepts and Algorithms used
-1. File Handling - To create, delete and search files
-2. Streams       - To make the easy to read, and it reduces no.of lines
-3. Collections   - To store and perform looping, searching, and sorting operations 
-4. Scanner       - To take user inputs
-
-#Project Flow
-
 Step -1   : Show welcome message along with the developer name.
 
 Step -2   : Show Main Menu and wait for the user's input.
 
 Step -3.0 : If input is "1. See All Files", all files will be showed in Ascending order by default.
-
 Step -3.1 : Additional sub menu will be showed and wait for user's input.
-
 Step -3.2 : If input is "1. See All Files in Dsc", all files will be showed in Descending order and return to Main Menu.
-
 Step -3.3 : If input is "2. Main Menu", program will return to Main Menu.
-
 Step -3.4 : If input is "3. Close Application", application will be closed by showing a warm message.
-
 Step -3.5 : If input doesn't match any of the above options, user will be given 2 more chances to enter correct input. If user fail to choose correct option then application will be closed by showing an error message saying "You have tried maximum attempts. Application is closed."
 
-
 Step -4   : If input is "2. Create File", a message will be showed to enter the file name along with the extension and wait for user's input.
-
 Step -4.1 : If file name is correct with extension, program will check if file already present or not.
-
 Step -4.2 : If file already exists, an error message will be showed to user saying "File already exists" and will return to Main Menu.
-
 Step -4.3 : If file not exists, a file will be created in the root directory, and a message will be showed to user saying "File successfully created" and will return to Main Menu.
-
 Step -4.4 : If file name is incorrect, an error message will be showed to user saying "Invalid File name" and will return to Main Menu.
 
-
 Step -5   : If input is "3. Delete File", a message will be showed to enter the file name along with the extension and wait for user's input.
-
 Step -5.1 : If file name is correct with extension, program will check if file already present or not.
-
 Step -5.2 : If file is present, file will be deleted from the root directory, and a message will be showed to user saying "File deleted successfully", and will return to Main Menu.
-
 Step -5.3 : If file not exists, an error message will be showed to user saying "File doesn't exist" and will return to Main Menu.
-
 Step -5.4 : If file name is incorrect, an error message will be showed to user saying "Invalid File name", and will return to Main Menu.
 
-
 Step -6   : If input is "4. Search File", a message will be showed to enter the file name along with the extension and wait for user's input.
-
 Step -6.1 : If file name is correct with extension, program will check if file already present or not.
-
 Step -6.2 : If file is present, a message will be showed to user saying "File is present" and will return to Main Menu.
-
 Step -6.3 : If file not exists, an error message will be showed to user saying "File doesn't exist" and will return to Main Menu.
-
 Step -6.4 : If file name is incorrect, an error message will be showed to user saying "Invalid File name", and will return to Main Menu.
 
-
 Step -7   : If input is "5. Close Application", application will be closed by showing a warm message.
-
 
 Step -8   : If input doesn't match any of the above options, user will be given 2 more chances to enter correct input. If user fail to choose correct option then application will be closed by showing an error message saying "You have tried maximum attempts. Application is closed."
