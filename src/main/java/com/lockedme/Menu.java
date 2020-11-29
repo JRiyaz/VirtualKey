@@ -100,9 +100,9 @@ public class Menu {
 //            Create File
             case 2:
 
-                String file_name = checkName();
-                if (file_name != null) {
-                    if (operation.createFile(file_name))
+                String create_file = checkName();
+                if (create_file != null) {
+                    if (operation.createFile(create_file))
                         System.out.println("File created successfully");
                     else
                         System.err.println("Something went wrong. Please try after some time.");
@@ -114,9 +114,9 @@ public class Menu {
 //            Delete File
             case 3:
 
-                file_name = checkName();
-                if (file_name != null) {
-                    if (operation.deleteFile(file_name))
+                String delete_file = checkName();
+                if (delete_file != null) {
+                    if (operation.deleteFile(delete_file))
                         System.out.println("File deleted successfully");
                     else
                         System.err.println("File doesn't exists.");
@@ -128,11 +128,11 @@ public class Menu {
 //            Search File
             case 4:
 
-                file_name = checkName();
-                if (file_name != null) {
-                    file_name = operation.searchFile(file_name);
-                    if (file_name != null)
-                        System.out.println("File '" + file_name + "' exists");
+                String search_file = checkName();
+                if (search_file != null) {
+                    String file_returned = operation.searchFile(search_file);
+                    if (file_returned != null)
+                        System.out.println("File '" + file_returned + "' exists");
                     else
                         System.err.println("File doesn't exists");
                 } else
