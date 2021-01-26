@@ -33,7 +33,6 @@ public class Operation {
         return Arrays.stream(file.list())
                 .sorted()
                 .collect(Collectors.toList());
-
     }
 
     /**
