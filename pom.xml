@@ -32,4 +32,8 @@
             <version>3.6.2</version>
         </dependency>
     </dependencies>
+
+    <build>
+        <finalName>VirtualKey</finalName>
+    </build>
 </project>
